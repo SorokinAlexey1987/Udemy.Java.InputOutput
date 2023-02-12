@@ -4,7 +4,47 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        //Task_11
+        File directory = new File("folder");
+        File file = new File(directory, "names.txt");
+        try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter next page or \"stop\" to exit");
+            byte[] pageText = new byte[3000];
+            String input = scanner.nextLine();
+            while (!input.equals("stop")) {
+                int page = Integer.parseInt(input);
+                randomAccessFile.seek((page - 1) * pageText.length);
+                int count = randomAccessFile.read(pageText);
+                System.out.println(new String(pageText, 0 , count));
+                System.out.println("Enter next page or \"stop\" to exit");
+                input = scanner.nextLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        //Task_10
+        /*
+        File directory = new File("folder");
+        File file = new File(directory, "names.txt");
+        try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw")) {
+            randomAccessFile.seek(10);
+            randomAccessFile.writeBytes("*******************************");
+            randomAccessFile.seek(300);
+            randomAccessFile.writeBytes("*******************************");
+            randomAccessFile.seek(5000);
+            byte[] array = new byte[1024];
+            randomAccessFile.read(array);
+            System.out.println(new String(array));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        */
+
         //Task_9
+        /*
         File directory = new File("folder");
         File file = new File(directory, "names.txt");
         try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file, true))) {
@@ -19,7 +59,6 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
             byte[] array = new byte[128];
             int count = inputStream.read(array);
@@ -32,6 +71,7 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
 
 
         //Task_8
