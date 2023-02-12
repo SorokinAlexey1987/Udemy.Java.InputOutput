@@ -12,17 +12,14 @@ public class Main {
             throw new RuntimeException(e);
         }
         try (InputStream inputStream = new FileInputStream(file)) {
-            long before = System.currentTimeMillis();
-            byte[] array = new byte[8192];
+            byte[] array = new byte[8];
             int count = inputStream.read(array);
             StringBuilder result = new StringBuilder();
             while (count > 0) {
-                result.append (new String(array));
+                result.append (new String(array, 0, count));
                 count = inputStream.read(array);
             }
             System.out.println(result.toString());
-            long after = System.currentTimeMillis();
-            System.out.println(after - before);
         } catch (Exception e) {
             e.printStackTrace();
         }
