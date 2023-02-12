@@ -1,17 +1,56 @@
 import java.io.*;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //Task_7
+        //Task_9
         File directory = new File("folder");
         File file = new File(directory, "names.txt");
-//        try (OutputStream outputStream = new FileOutputStream(file, true)) {
-//            String names = "John Max Nick Thomas Andrew Roman Herbert Alex\r\n";
-//            outputStream.write(names.getBytes());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file, true))) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter name or \"stop\" to exit");
+            String next = scanner.nextLine();
+            while (!next.equals("stop")) {
+                outputStream.write(next.getBytes());
+                outputStream.write("\r\n".getBytes());
+                next = scanner.nextLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
+            byte[] array = new byte[128];
+            int count = inputStream.read(array);
+            StringBuilder result = new StringBuilder();
+            while(count > 0) {
+                result.append(new String(array, 0, count));
+                count = inputStream.read(array);
+            }
+            System.out.println(result.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        //Task_8
+        /*
+        File directory = new File("folder");
+        File file = new File(directory, "names.txt");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a: ");
+        int a = scanner.nextInt();
+        System.out.println("Enter b: ");
+        int b = scanner.nextInt();
+        System.out.println("Sum = " + (a + b));
+        */
+
+
+        //Task_7
+        /*
+        File directory = new File("folder");
+        File file = new File(directory, "names.txt");
         try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
             long before = System.currentTimeMillis();
             int a = inputStream.read();
@@ -25,6 +64,7 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
 
 
         //Task_6
