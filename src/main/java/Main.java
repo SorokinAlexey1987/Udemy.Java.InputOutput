@@ -3,14 +3,34 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        //Task_6
+        //Task_7
         File directory = new File("folder");
         File file = new File(directory, "names.txt");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+//        try (OutputStream outputStream = new FileOutputStream(file, true)) {
+//            String names = "John Max Nick Thomas Andrew Roman Herbert Alex\r\n";
+//            outputStream.write(names.getBytes());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
+            long before = System.currentTimeMillis();
+            int a = inputStream.read();
+            StringBuilder result = new StringBuilder();
+            while (a != -1) {
+                result.append((char) a);
+                a = inputStream.read();
+            }
+            long after = System.currentTimeMillis();
+            System.out.println(after - before);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+
+        //Task_6
+        /*
+        File directory = new File("folder");
+        File file = new File(directory, "names.txt");
         try (Reader reader = new InputStreamReader(new FileInputStream(file))) {
             char[] array = new char[128];
             int count = reader.read(array);
@@ -26,6 +46,7 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
 
 
         //Task_5
