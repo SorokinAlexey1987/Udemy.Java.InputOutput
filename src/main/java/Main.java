@@ -4,7 +4,33 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        //Task_5
+        File directory = new File("folder");
+        directory.mkdir();
+        File file = new File(directory, "names.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try (InputStream inputStream = new FileInputStream(file)) {
+            long before = System.currentTimeMillis();
+            int a = inputStream.read();
+            StringBuilder result = new StringBuilder();
+            while (a != -1) {
+                result.append ((char) a);
+                a = inputStream.read();
+            }
+            System.out.println(result.toString());
+            long after = System.currentTimeMillis();
+            System.out.println(after - before);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         //Task_4
+        /*
         File directory = new File("folder");
         directory.mkdir();
         File file = new File(directory, "names.txt");
@@ -22,6 +48,8 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
+
 
         //Task_3
         /*
