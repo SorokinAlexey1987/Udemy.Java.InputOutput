@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 public class Address {
     private String street;
     private int numberOfHouse;

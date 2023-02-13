@@ -11,15 +11,17 @@ public class Main {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//        User user = new User("John", "Smith", 25);
+//        User user = new User("John", "Smith", 25, new Address("Main", 10));
 //        try(ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))) {
 //            objectOutputStream.writeObject(user);
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
+
+
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
-            User user = (User) objectInputStream.readObject();
-            System.out.println(user);
+            User savedUser = (User) objectInputStream.readObject();
+            System.out.println(savedUser);
         } catch (Exception e) {
             e.printStackTrace();
         }
