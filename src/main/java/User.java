@@ -6,6 +6,7 @@ public class User implements Serializable {
     private int age;
 
     public User(String name, String lastName, int age) {
+        System.out.println("Constructor");
         this.name = name;
         this.lastName = lastName;
         this.age = age;
