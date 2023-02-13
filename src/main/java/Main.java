@@ -1,10 +1,40 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        //Task_13
+        File file = new File("cats.cat");
+//        try {
+//            file.createNewFile();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        List<Cat> cats = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            cats.add(new Cat("Name" + i, "Breed" + i, 1f));
+//        }
+//        try(ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))) {
+//            objectOutputStream.writeObject(cats);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
+            List<Cat> cats = (List<Cat>) objectInputStream.readObject();
+            for (Cat cat : cats) {
+                System.out.println(cat.getName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         //Task_12
+        /*
         File file = new File("users.usr");
         try {
             file.createNewFile();
@@ -17,14 +47,13 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
             User savedUser = (User) objectInputStream.readObject();
             System.out.println(savedUser);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
 
 
         //Task_11
