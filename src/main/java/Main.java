@@ -5,8 +5,19 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //Task_12
-        File directory = new File("folder");
-        File file = new File(directory, "names.txt");
+        File file = new File("users.usr");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        User user = new User("John", "Smith", 25);
+        try(ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))) {
+            objectOutputStream.writeObject(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
 
         //Task_11
