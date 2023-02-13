@@ -4,7 +4,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        //Task_12
+        File directory = new File("folder");
+        File file = new File(directory, "names.txt");
+
+
         //Task_11
+        /*
         File directory = new File("folder");
         File file = new File(directory, "names.txt");
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
@@ -23,6 +29,7 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
 
 
         //Task_10
